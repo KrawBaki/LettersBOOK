@@ -8,7 +8,7 @@ let count = 1
 
 
 saveLetter.addEventListener('click', function(e){
-    const delLetter = document.querySelector('.removeLetter')
+
     let lastElem = list.children.length + 1
     let text = textArea.value
 
@@ -16,14 +16,15 @@ saveLetter.addEventListener('click', function(e){
     let li = document.createElement('li')
     let span = document.createElement('span')
     span.setAttribute('class', 'removeLetter')
-    span.innerHTML = 'x'
+    span.innerHTML = 'X'
+
     li.setAttribute('class', 'list-item')
     li.setAttribute('data-key', lastElem)
-    li.innerHTML = `Запись ${+lastElem}`
+    li.innerHTML = `Запись ${ +lastElem}`
     li.appendChild(span) 
     list.appendChild(li)
 
-    console.log(li);
+
 
     //Добавление в LocalStorage
     letter = {
@@ -38,8 +39,11 @@ saveLetter.addEventListener('click', function(e){
     const listItems = list.children
     for(let elem of listItems) {elem.addEventListener('click', choiceElem)}
 
+    span.addEventListener('click', function() {
+        this.parentElement.remove()
+    })
 
-    console.log(delLetter);
+
 
 
     count++
@@ -52,6 +56,7 @@ saveLetter.addEventListener('click', function(e){
 
 
 function choiceElem() {
+
     const data = localStorage.getItem('letter')
     const arrData = JSON.parse(data)
 
